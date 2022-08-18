@@ -3,8 +3,11 @@ pipeline {
  node {
  label 'nodejs'
  }
- }
- stages {
+ 
+}
+stages {
+ stage('Run Tests') {
+ parallel {
  stage('Backend Tests') {
  steps {
  sh 'node ./backend/test.js'
@@ -16,4 +19,7 @@ pipeline {
  }
  }
  }
+ }
 }
+}
+
