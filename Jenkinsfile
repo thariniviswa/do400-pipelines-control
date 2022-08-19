@@ -3,7 +3,6 @@ pipeline {
  node {
  label 'nodejs'
  }
-
 }
 parameters {
  booleanParam(name: "RUN_FRONTEND_TESTS", defaultValue: true)
@@ -24,6 +23,13 @@ steps {
  }
  }
  }
+stage('Deploy') {
+when {
+expression { env.GIT_BRANCH == 'origin/main' }
+}
+steps {
+echo 'Deploying...'
 }
 }
-
+}
+}
